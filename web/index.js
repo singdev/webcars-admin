@@ -35,7 +35,6 @@ module.exports = (app) => {
     app.get("/urban-page", verifyToken, async (req, res, next) => {
         if(req.auth){
             const zones = await GetAllZone(zoneRepository);
-            console.log(zones);
             res.render("urban.pug", { zones });
         } else {
             res.redirect("/login-page");

@@ -2,9 +2,9 @@ const router = require('express').Router();
 
 const { verifyHeaderToken } = require('../lib/src/adapter/controller/authController');
 
-const zone = require('./zone');
 const ZoneRepository = require('../lib/src/adapter/storage/MongoZoneRepository');
 const Update = require('../lib/src/application/use_case/UpdateZone');
+const GetAllZone = require('../lib/src/application/use_case/GetAllZone');
 const zoneRepository = new ZoneRepository();
 
 router.post("/update", verifyHeaderToken, async (req, res, next) => {
@@ -19,5 +19,18 @@ router.post("/update", verifyHeaderToken, async (req, res, next) => {
         res.sendStatut(401);
     }
 });
+
+router.get("/zone", verifyHeaderToken, async (req, res, next) => {
+    if(req.auth){
+        const zones = await GetAllZone(zoneRepository);
+        if(zones){
+            res.send(zones);
+        } else {
+            res.sendStatus(500);
+        }
+    } else {
+        res.sendStatus(401);
+    }
+})
 
 module.exports = router;
