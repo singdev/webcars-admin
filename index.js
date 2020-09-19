@@ -7,11 +7,16 @@ const Bcrypt = require('./lib/src/adapter/security/Bcrypt');
 const CreateRoot = require('./lib/src/application/use_case/CreatRoot');
 
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 
+app.use(cookieParser());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+app.use(express.static(path.join(__dirname, 'public')));
 
 mongo();
 api(app);

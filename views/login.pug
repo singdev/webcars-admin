@@ -1,0 +1,22 @@
+html
+  head
+    link(rel="stylesheet" href="/css/style.css")
+    link(rel="stylesheet" href="/css/login.css")
+    title Se connecter - Webcars Admin
+
+  body
+    img.logo(src="/img/webcars.png" alt="Logo WebCars")
+
+    h1 Administration du système
+
+    form(action="/login" method="post")
+      .form-group
+        label Adresse Email
+        input(type="text" name="email")
+
+      .form-group
+        label Mot de passe
+        input(type="password" name="password")
+
+      .form-group
+        input(type="submit" name="submit" value="Se connecter")

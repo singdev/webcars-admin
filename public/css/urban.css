@@ -1,0 +1,27 @@
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+table thead {
+    background-color: #444444;
+    color: white;
+}
+
+table thead th {
+    padding: 16px 32px;
+}
+
+table td {
+    padding: 8px 32px;
+    background-color: #cccccc;
+}
+
+
+.create-code {
+    padding: 20px;
+    width: fit-content;
+}

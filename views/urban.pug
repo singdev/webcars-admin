@@ -1,0 +1,58 @@
+doctype html
+html
+  head
+    link(rel="stylesheet" href="/css/style.css")
+    link(rel="stylesheet" href="/css/header.css")
+    link(rel="stylesheet" href="/css/urban.css")
+
+  body
+    include include/header.pug
+
+    main
+      h1 Urban
+
+      form(action="/zone", method="post" class="create-code")
+        h2 Créer un nouveau code
+        .form-group
+          label Nom
+          input(type="text" name="nom" placeholder="Nom de code")
+        
+        .form-group
+          input(type="submit" name="submit" value="Créer")
+      
+      .content
+        table
+          thead
+            tr
+              th Nom
+              th Position réel
+              th Position approx.
+              th Position géo.
+              th Code
+              th Etat
+          tbody
+            for zone in zones
+              tr
+                td=zone.nom
+                td=zone.position_reel
+                td=zone.position_approximative
+                td
+                 span=zone.lat
+                 span ,
+                 span=zone.lng
+                td
+                  - let id = zone._id
+                  - let nom = zone.nom
+                  button(onclick="generateQRCode('"+id+ "','"+ nom + "')") Code QR
+                td
+                  form(action="/zone/delete" method="post")
+                    input(type="hidden" value=zone._id name="id")
+                    input(type="submit" value="Supprimer")
+        section
+          #qrcode
+          p#nom
+          button(onclick="printDiv('qrcode')") Imprimer
+
+    script(src="/js/qrcode.min.js")
+    script(src="/js/urban.js")      
+              
