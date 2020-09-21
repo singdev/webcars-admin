@@ -26,6 +26,6 @@ const password = process.env.ROOT_PASSWORD || "123456";
 
 CreateRoot(password, new UserRepository(), new Bcrypt());
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 app.listen(port, () => console.log("Webcars admin start at port " + port));

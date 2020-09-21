@@ -20,7 +20,7 @@ router.post("/update", verifyHeaderToken, async (req, res, next) => {
     }
 });
 
-router.get("/zone", verifyHeaderToken, async (req, res, next) => {
+router.get("/", verifyHeaderToken, async (req, res, next) => {
     if(req.auth){
         const zones = await GetAllZone(zoneRepository);
         if(zones){
