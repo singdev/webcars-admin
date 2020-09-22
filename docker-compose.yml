@@ -1,0 +1,12 @@
+version: "2"
+services:
+    webcars-admin-app:
+        build: .
+        ports:
+            - "1706:8080"
+        links:
+            - webcarsadmin
+    webcarsadmin:
+        image: mongo
+        volumes:
+            - ./data:/data/db
